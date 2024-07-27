@@ -1,0 +1,84 @@
+/* src/Profile.css */
+.profile-container {
+    padding: 20px;
+    max-width: 50%;
+    margin: 0 auto;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically if necessary */
+}
+
+.profile-info {
+    font-size: 18px;
+    text-align: center; /* Center text inside profile-info */
+}
+
+.profile-info p {
+    margin: 10px 0;
+}
+
+/* Button Styling */
+button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; /* Customize as needed */
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+    width: 100%; /* Make button width 50% of its container */
+    display: block; /* Ensure buttons are block elements to take full width */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 50%; /* Button width 50% on larger screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 6px 12px;
+        width: 50%; /* Button width 50% on smaller screens */
+    }
+}

@@ -1,0 +1,56 @@
+body {
+    background: url('https://cdn.pixabay.com/photo/2024/06/14/11/07/shadows-8829579_1280.jpg') no-repeat center center/cover;
+}
+
+.home-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    margin: 10px 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.book-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    padding: 50px 20px; /* Add padding to the left and right for consistent gaps */
+    box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+.book-image {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-image:hover {
+    transform: scale(1.5); /* Adjust scale for better UX */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.book-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.book-image:hover img {
+    opacity: 0.9;
+}
