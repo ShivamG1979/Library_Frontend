@@ -22,7 +22,7 @@ const Register = () => {
         e.preventDefault();
         try {
             setLoading(true); // Show spinner when registration starts
-            await axios.post('https://library-backend-evox.onrender.com/api/auth/register', { username, email, password });
+            await axios.post('https://library-backend-ipoq.onrender.com/api/auth/register', { username, email, password });
             toast.success('Registration successful! Please log in.');
             navigate('/login');
         } catch (error) {

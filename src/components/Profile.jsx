@@ -18,7 +18,7 @@ const Profile = () => {
             try {
                 const token = localStorage.getItem('token');
                 const config = { headers: { 'x-auth-token': token } };
-                const { data } = await axios.get('https://library-backend-evox.onrender.com/api/users/profile', config);
+                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/users/profile', config);
 
                 if (data && data.user) {
                     setUserProfile(data.user);
@@ -62,7 +62,7 @@ const Profile = () => {
                 },
             };
     
-            const { data } = await axios.put('https://library-backend-evox.onrender.com/api/auth/profile', formData, config);
+            const { data } = await axios.put('https://library-backend-ipoq.onrender.com/api/auth/profile', formData, config);
     
             setUserProfile(data.user);
             toast.success('Profile updated successfully!');
