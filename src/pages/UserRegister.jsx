@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css'; // Import the CSS file
 
-const Register = () => {
+const UserRegister = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,7 +22,7 @@ const Register = () => {
         e.preventDefault();
         try {
             setLoading(true); // Show spinner when registration starts
-            await axios.post('https://library-backend-ipoq.onrender.com/api/auth/register', { username, email, password });
+            await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
             toast.success('Registration successful! Please log in.');
             navigate('/login');
         } catch (error) {
@@ -73,4 +73,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default UserRegister;

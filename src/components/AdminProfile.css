@@ -1,0 +1,50 @@
+.admin-profile-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.footer button {
+    background-color: #6c757d;
+}
+
+.footer button:hover {
+    background-color: #5a6268;
+}

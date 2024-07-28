@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'; 
-import './Profile.css';
+import './UserProfile.css';
 
-const Profile = () => {
+const UserProfile = () => {
     const [userProfile, setUserProfile] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Profile = () => {
             try {
                 const token = localStorage.getItem('token');
                 const config = { headers: { 'x-auth-token': token } };
-                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/users/profile', config);
+                const { data } = await axios.get('http://localhost:5000/api/auth/profile', config);
 
                 if (data && data.user) {
                     setUserProfile(data.user);
@@ -62,7 +62,7 @@ const Profile = () => {
                 },
             };
     
-            const { data } = await axios.put('https://library-backend-ipoq.onrender.com/api/auth/profile', formData, config);
+            const { data } = await axios.put('http://localhost:5000/api/auth/profile', formData, config);
     
             setUserProfile(data.user);
             toast.success('Profile updated successfully!');
@@ -118,4 +118,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default UserProfile;

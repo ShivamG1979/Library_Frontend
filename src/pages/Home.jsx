@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/books');
+                const { data } = await axios.get('http://localhost:5000/api/books');
                 // Select random books
                 const shuffled = data.sort(() => 0.5 - Math.random());
                 const selected = shuffled.slice(0, 6);
@@ -23,22 +23,22 @@ const Home = () => {
         fetchBooks();
     }, []);
 
-    const handleImageClick = () => {
-        // Navigate to login page if not logged in
-        alert('Please log in to view more details about the book.');
-        navigate('/login');
+    const handleImageClick = (bookId) => {
+        // Navigate to the book details page
+        navigate(`/book/${bookId}`);
     };
 
     return (
         <div className="home-container">
             <h1>Welcome to the Library</h1>
             <div className="button-container">
-                <button onClick={() => navigate('/login')}>Login</button>
-                <button onClick={() => navigate('/register')}>Register</button>
+                <button onClick={() => navigate('/login')}>User Login</button>
+                <button onClick={() => navigate('/register')}>User Register</button>
+                <button onClick={() => navigate('/admin-login')}>Admin Login</button>
             </div>
             <div className="book-images">
                 {randomBooks.map((book) => (
-                    <div key={book._id} className="book-image" onClick={handleImageClick}>
+                    <div key={book._id} className="book-image" onClick={() => handleImageClick(book._id)}>
                         <img src={book.image} alt={book.title} />
                     </div>
                 ))}
