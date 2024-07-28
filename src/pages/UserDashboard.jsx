@@ -168,7 +168,7 @@ const UserDashboard = () => {
         setIsCartView(false);
         setIsAdding(false);
         setIsDeleting(false);
-        navigate('/dashboard');
+        navigate('/user/dashboard');
     };
 
     const goToProfile = () => {

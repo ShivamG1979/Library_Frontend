@@ -6,8 +6,9 @@ import UserLogin from './pages/UserLogin';
 import AdminLogin from './pages/AdminLogin';
 import AdminProfile from './components/AdminProfile';
 import UserRegister from './pages/UserRegister';
-import AdminDashboard from './AdminDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
+import './App.css';
 
 
 const App = () => (
