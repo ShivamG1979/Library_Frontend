@@ -167,9 +167,12 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
-            <aside className="admin-dashboard__sidebar">
-                <h2>Admin Dashboard</h2>
+            <header className="admin-dashboard__header">
+                <h2> Dashboard</h2>
                 <p>Welcome, {admin.username}!</p>
+            </header>
+            <aside className="admin-dashboard__sidebar">
+                
                 <ul>
                     <li>
                         <button onClick={() => handleSectionChange('viewAllBooks')}>View All Books</button>
@@ -178,10 +181,10 @@ const AdminDashboard = () => {
                         <button onClick={() => handleSectionChange('manageUsers')}>Manage Users</button>
                     </li>
                     <li>
-                    <button onClick={() => handleSectionChange('addOrEditBook')}>Add New Book</button>
+                        <button onClick={() => handleSectionChange('addOrEditBook')}>Add New Book</button>
                     </li>
                     <li>
-                    <button onClick={() => handleSectionChange('addOrEditUser')}>Add New User</button>
+                        <button onClick={() => handleSectionChange('addOrEditUser')}>Add New User</button>
                     </li>
                     <li>
                         <button>
@@ -197,55 +200,39 @@ const AdminDashboard = () => {
                 {selectedSection === 'viewAllBooks' && (
                     <div>
                         <h3>All Books</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Year</th>
-                                    <th>Image</th>
-                                    <th>Available</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {books.length > 0 ? (
-                                    books.map(book => (
-                                        <tr key={book._id}>
-                                            <td>{book.title}</td>
-                                            <td>{book.author}</td>
-                                            <td>{book.year}</td>
-                                            <td><img src={book.image} alt={book.title} width="100" /></td>
-                                            <td>{book.available ? 'Yes' : 'No'}</td>
-                                            <td>
-                                                <button onClick={() => {
-                                                    setSelectedBook(book);
-                                                    setBookForm({ title: book.title, author: book.author, year: book.year, image: book.image, available: book.available });
-                                                    handleSectionChange('addOrEditBook');
-                                                }}>Edit</button>
-                                                <button onClick={() => handleDeleteBook(book._id)}>Delete</button>
-                                                {book.available && <button onClick={() => handleIssueBook(book._id)}>Issue</button>}
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="6">No books available</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                        
+                        <ul className="book-list">
+                            {books.length > 0 ? (
+                                books.map(book => (
+                                    <li key={book._id} className="book-list__item">
+                                        <div className="book-details">
+                                            <strong>Title:</strong> {book.title} <br />
+                                            <strong>Author:</strong> {book.author} <br />
+                                            <strong>Year:</strong> {book.year} <br />
+                                            <strong>Available:</strong> {book.available ? 'Yes' : 'No'} <br />
+                                            <img src={book.image} alt={book.title} style={{ width: '200px', height: '250px' }} />
+                                        </div>
+                                        <div className="book-actions">
+                                            <button onClick={() => {
+                                                setSelectedBook(book);
+                                                setBookForm({ title: book.title, author: book.author, year: book.year, image: book.image, available: book.available });
+                                                handleSectionChange('addOrEditBook');
+                                            }}>Edit</button>
+                                            <button onClick={() => handleDeleteBook(book._id)}>Delete</button>
+                                            <button onClick={() => handleIssueBook(book._id)} disabled={!book.available}>Issue</button>
+                                        </div>
+                                    </li>
+                                ))
+                            ) : (
+                                <p>No books found.</p>
+                            )}
+                        </ul>
                     </div>
                 )}
 
                 {selectedSection === 'addOrEditBook' && (
                     <div>
                         <h3>{selectedBook ? 'Edit Book' : 'Add New Book'}</h3>
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            handleAddOrEditBook();
-                        }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleAddOrEditBook(); }}>
                             <label>
                                 Title:
                                 <input type="text" value={bookForm.title} onChange={(e) => setBookForm({ ...bookForm, title: e.target.value })} required />
@@ -260,13 +247,18 @@ const AdminDashboard = () => {
                             </label>
                             <label>
                                 Image URL:
-                                <input type="text" value={bookForm.image} onChange={(e) => setBookForm({ ...bookForm, image: e.target.value })} />
+                                <input type="text" value={bookForm.image} onChange={(e) => setBookForm({ ...bookForm, image: e.target.value })} required />
                             </label>
                             <label>
                                 Available:
                                 <input type="checkbox" checked={bookForm.available} onChange={(e) => setBookForm({ ...bookForm, available: e.target.checked })} />
                             </label>
                             <button type="submit">{selectedBook ? 'Update Book' : 'Add Book'}</button>
+                            <button type="button" onClick={() => {
+                                setSelectedBook(null);
+                                setBookForm({ title: '', author: '', year: '', image: '', available: true });
+                                handleSectionChange('viewAllBooks');
+                            }}>Cancel</button>
                         </form>
                     </div>
                 )}
@@ -274,50 +266,35 @@ const AdminDashboard = () => {
                 {selectedSection === 'manageUsers' && (
                     <div>
                         <h3>Manage Users</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>User ID</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users.length > 0 ? (
-                                    users.map(user => (
-                                        <tr key={user._id}>
-                                            <td>{user.username}</td>
-                                            <td>{user.email}</td>
-                                            <td>{user._id}</td>
-                                            <td>
-                                                <button onClick={() => {
-                                                    setEditingUser(user);
-                                                    setUserForm({ username: user.username, email: user.email, password: '' });
-                                                    handleSectionChange('addOrEditUser');
-                                                }}>Edit</button>
-                                                <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="4">No users available</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                        
+                        <ul className="user-list">
+                            {users.length > 0 ? (
+                                users.map(user => (
+                                    <li key={user._id} className="user-list__item">
+                                        <div className="user-details">
+                                            <strong>Username:</strong> {user.username} <br />
+                                            <strong>Email:</strong> {user.email} <br />
+                                        </div>
+                                        <div className="user-actions">
+                                            <button onClick={() => {
+                                                setEditingUser(user);
+                                                setUserForm({ username: user.username, email: user.email, password: '' });
+                                                handleSectionChange('addOrEditUser');
+                                            }}>Edit</button>
+                                            <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
+                                        </div>
+                                    </li>
+                                ))
+                            ) : (
+                                <p>No users found.</p>
+                            )}
+                        </ul>
                     </div>
                 )}
 
                 {selectedSection === 'addOrEditUser' && (
                     <div>
                         <h3>{editingUser ? 'Edit User' : 'Add New User'}</h3>
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            handleEditUser();
-                        }}>
+                        <form onSubmit={(e) => { e.preventDefault(); handleEditUser(); }}>
                             <label>
                                 Username:
                                 <input type="text" value={userForm.username} onChange={(e) => setUserForm({ ...userForm, username: e.target.value })} required />
@@ -328,13 +305,21 @@ const AdminDashboard = () => {
                             </label>
                             <label>
                                 Password:
-                                <input type="password" value={userForm.password} onChange={(e) => setUserForm({ ...userForm, password: e.target.value })} />
+                                <input type="password" value={userForm.password} onChange={(e) => setUserForm({ ...userForm, password: e.target.value })} required={!editingUser} />
                             </label>
                             <button type="submit">{editingUser ? 'Update User' : 'Add User'}</button>
+                            <button type="button" onClick={() => {
+                                setEditingUser(null);
+                                setUserForm({ username: '', email: '', password: '' });
+                                handleSectionChange('manageUsers');
+                            }}>Cancel</button>
                         </form>
                     </div>
                 )}
             </main>
+            <footer className="admin-dashboard__footer">
+                <p>Admin Dashboard Footer</p>
+            </footer>
         </div>
     );
 };

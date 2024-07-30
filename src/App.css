@@ -1,3 +1,6 @@
 body {
-  background-color: rgb(174, 235, 235);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #edc2c2;
 }
