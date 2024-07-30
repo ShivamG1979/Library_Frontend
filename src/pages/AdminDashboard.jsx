@@ -67,7 +67,7 @@ const AdminDashboard = () => {
     // Handle logout
     const handleLogout = () => {
         localStorage.removeItem('adminToken');
-        navigate('/admin-login');
+        navigate('/');
     };
 
     // Handle delete book
