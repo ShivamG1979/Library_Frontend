@@ -24,8 +24,17 @@ const Home = () => {
     }, []);
 
     const handleImageClick = (bookId) => {
-        // Navigate to the book details page
-        navigate(`/book/${bookId}`);
+        // Check if user is logged in
+        const isLoggedIn = Boolean(localStorage.getItem('token')); // Assume token is stored in localStorage
+
+        if (isLoggedIn) {
+            // Navigate to the book details page
+            navigate(`/book/${bookId}`);
+        } else {
+            // Show notification and redirect to login
+            alert('Please log in first.');
+            navigate('/login');
+        }
     };
 
     return (
