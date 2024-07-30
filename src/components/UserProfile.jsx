@@ -111,7 +111,7 @@ const UserProfile = () => {
                     <p><strong>Email:</strong> {userProfile?.email || 'N/A'}</p>
                     <p><strong>User ID:</strong> {userProfile?._id || 'N/A'}</p>
                     <button onClick={handleEditClick}>Edit Profile</button>
-                    <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+                    <button onClick={() => navigate('/user/dashboard')}>Go to Dashboard</button>
                 </div>
             )}
         </div>
