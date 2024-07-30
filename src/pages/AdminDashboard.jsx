@@ -190,6 +190,7 @@ const AdminDashboard = () => {
                         <button>
                             <Link to="/adminprofile">Profile</Link>
                         </button>
+                    
                     </li>
                     <li>
                         <button className="logout" onClick={handleLogout}>Logout</button>
@@ -318,7 +319,7 @@ const AdminDashboard = () => {
                 )}
             </main>
             <footer className="admin-dashboard__footer">
-                <p>Admin Dashboard Footer</p>
+            <p>&copy; 2024 Book Library</p>
             </footer>
         </div>
     );
