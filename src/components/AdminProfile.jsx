@@ -42,9 +42,11 @@ const AdminProfile = () => {
             const response = await axios.put('http://localhost:5000/api/auth/admin/profile', updatedProfile, config);
             console.log('Profile updated:', response.data);
             toast.success('Profile updated successfully');
+            navigate('/admin/dashboard');
         } catch (error) {
             console.error('Error updating profile:', error);
             toast.error('Error updating profile');
+            
         }
     };
     

@@ -22,15 +22,27 @@ const AdminDashboard = () => {
                 const token = localStorage.getItem('adminToken');
                 const config = { headers: { 'x-auth-token': token } };
                 const { data } = await axios.get('http://localhost:5000/api/auth/admin/profile', config);
-                setAdmin(data.user);
+    
+                // Debugging
+                console.log('Fetched Admin Data:', data.user);
+    
+                if (data.user && data.user._id) {
+                    setAdmin(data.user);
+                } else {
+                    console.error('Admin data is missing _id field');
+                }
             } catch (error) {
                 toast.error('Error fetching admin profile: ' + (error.response?.data?.message || error.message));
                 navigate('/admin-login');
             }
         };
-
+    
         fetchAdminProfile();
     }, [navigate]);
+    
+    
+    
+    
 
     // Fetch books and users
     useEffect(() => {
@@ -83,22 +95,41 @@ const AdminDashboard = () => {
         }
     };
 
-    // Handle issue book
-    const handleIssueBook = async (bookId) => {
-        try {
-            const token = localStorage.getItem('adminToken');
-            const config = { headers: { 'x-auth-token': token } };
-            const userId = admin._id; // or any other logic to get the user ID
-    
-            await axios.put(`http://localhost:5000/api/auth/admin/books/issue/${bookId}`, { userId }, config);
-            setBooks(books.map(book =>
-                book._id === bookId ? { ...book, available: false } : book
-            ));
-            toast.success('Book issued successfully');
-        } catch (error) {
-            toast.error('Error issuing book: ' + (error.response?.data?.message || error.message));
+
+
+
+// Handle issue book
+const handleIssueBook = async (bookId) => {
+    try {
+        const token = localStorage.getItem('adminToken');
+        const config = { headers: { 'x-auth-token': token } };
+        const userId = admin._id; // Ensure this is correctly set
+
+        if (!userId) {
+            throw new Error('Admin user ID is not available.');
         }
-    };
+
+        const response = await axios.put(
+            `http://localhost:5000/api/books/issue/${bookId}`,
+            { userId },
+            config
+        );
+
+        setBooks(books.map(book =>
+            book._id === bookId ? { ...book, available: false } : book
+        ));
+
+        toast.success('Book issued successfully');
+    } catch (error) {
+        console.error('Error issuing book:', error);
+        toast.error('Error issuing book: ' + (error.response?.data?.message || error.message));
+    }
+};
+
+
+
+
+
 
     // Handle add or edit book
     const handleAddOrEditBook = async () => {
@@ -164,7 +195,9 @@ const AdminDashboard = () => {
             toast.error('Error adding/editing user: ' + (error.response?.data?.message || error.message));
         }
     };
-
+    const handleProfileClick = () => {
+        navigate('/adminprofile');
+    };
     return (
         <div className="admin-dashboard">
             <header className="admin-dashboard__header">
@@ -187,9 +220,9 @@ const AdminDashboard = () => {
                         <button onClick={() => handleSectionChange('addOrEditUser')}>Add New User</button>
                     </li>
                     <li>
-                        <button>
-                            <Link to="/adminprofile">Profile</Link>
-                        </button>
+                    <button onClick={handleProfileClick}>
+            Profile
+        </button>
                     
                     </li>
                     <li>
@@ -231,7 +264,7 @@ const AdminDashboard = () => {
                 )}
 
                 {selectedSection === 'addOrEditBook' && (
-                    <div>
+                    <div className='addOrEditBook'>
                         <h3>{selectedBook ? 'Edit Book' : 'Add New Book'}</h3>
                         <form onSubmit={(e) => { e.preventDefault(); handleAddOrEditBook(); }}>
                             <label>
@@ -293,7 +326,7 @@ const AdminDashboard = () => {
                 )}
 
                 {selectedSection === 'addOrEditUser' && (
-                    <div>
+                    <div className='addOrEditUser'>
                         <h3>{editingUser ? 'Edit User' : 'Add New User'}</h3>
                         <form onSubmit={(e) => { e.preventDefault(); handleEditUser(); }}>
                             <label>

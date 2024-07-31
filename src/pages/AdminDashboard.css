@@ -34,7 +34,8 @@ h3 {
 }
 
 .admin-dashboard__main-content {
-    width: 80%;
+    padding-right: 20px;
+    width: 79%;
     margin-left: 20%;
     padding: 10px;
     padding-top: 80px; /* Adjust for header height */
@@ -78,6 +79,7 @@ h3 {
 }
 
 button {
+    width: 90%;
     padding: 10px 12px;
     background-color: #007bff;
     color: white;
@@ -109,4 +111,91 @@ button.logout:hover {
     bottom: 0;
     left: 0;
     z-index: 1000;
+}
+
+.user-list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; 
+}
+
+.user-details {
+    flex: 1; 
+    padding-right: 20px; 
+}
+
+.user-actions {
+    flex: 0 0 30%; 
+    display: flex;
+    justify-content: flex-end; 
+    gap: 20px; 
+}
+
+.user-actions button {
+    width: 80px; 
+    padding: 5px 10px; 
+    
+}
+.addOrEditBook,
+.addOrEditUser {
+    width: 300px; 
+    margin: auto; 
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 20px;
+    background-color: #9f9797; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.addOrEditUser h3 {
+    text-align: center; /* Center the heading */
+    margin-bottom: 20px;
+    font-size: 1.2rem; /* Optional: adjust font size */
+}
+
+.addOrEditUser form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+}
+
+.addOrEditUser label {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem; /* Optional: adjust font size */
+}
+
+.addOrEditUser input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem; /* Optional: adjust font size */
+}
+
+.addOrEditUser button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff; /* Set a color for the button */
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem; /* Optional: adjust font size */
+}
+
+.addOrEditUser button:hover {
+    background-color: #0056b3; /* Darken on hover */
+}
+
+.addOrEditUser button[type="button"] {
+    background-color: #6c757d; /* Set a different color for cancel button */
+}
+
+.addOrEditUser button[type="button"]:hover {
+    background-color: #5a6268; /* Darken cancel button on hover */
 }

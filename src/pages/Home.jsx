@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FaUser, FaUserPlus, FaUserShield } from 'react-icons/fa'; // Importing icons
 import './Home.css';
 
 const Home = () => {
@@ -25,7 +26,7 @@ const Home = () => {
 
     const handleImageClick = (bookId) => {
         // Check if user is logged in
-        const isLoggedIn = Boolean(localStorage.getItem('token')); // Assume token is stored in localStorage
+        const isLoggedIn = Boolean(localStorage.getItem('token')); 
 
         if (isLoggedIn) {
             // Navigate to the book details page
@@ -41,9 +42,15 @@ const Home = () => {
         <div className="home-container">
             <h1>Welcome to the Library</h1>
             <div className="button-container">
-                <button onClick={() => navigate('/login')}>User Login</button>
-                <button onClick={() => navigate('/register')}>User Register</button>
-                <button onClick={() => navigate('/admin-login')}>Admin Login</button>
+                <button onClick={() => navigate('/login')}>
+                    <FaUser /> User Login
+                </button>
+                <button onClick={() => navigate('/register')}>
+                    <FaUserPlus /> User Register
+                </button>
+                <button onClick={() => navigate('/admin-login')}>
+                    <FaUserShield /> Admin Login
+                </button>
             </div>
             <div className="book-images">
                 {randomBooks.map((book) => (
