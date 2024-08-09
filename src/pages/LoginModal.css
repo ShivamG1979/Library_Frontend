@@ -1,0 +1,107 @@
+/* Modal overlay styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal content styles */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: 400px; /* Set a maximum width */
+    text-align: center;
+    position: relative; /* Ensure the close button is positioned relative to the modal */
+}
+
+/* Close button styles */
+.close-button {
+    position: absolute;
+    top: 10px; /* Distance from top edge */
+    right: 10px; /* Distance from right edge */
+    background: none;
+    border: none;
+    font-size: 24px; /* Larger close button for better accessibility */
+    cursor: pointer;
+    color: #333;
+    z-index: 10; /* Ensure it is above other content */
+    padding: 0; /* Remove any default padding */
+    line-height: 1; /* Ensure the button height does not expand */
+    width: auto; /* Allow width to adjust based on content */
+}
+
+/* Modal title styles */
+.modal-content h2 {
+    margin-top: 0; /* Remove default margin to prevent overlap with the close button */
+    margin-bottom: 20px; /* Add margin below the title for spacing */
+}
+
+/* Styles for modal buttons */
+.modal-button {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 20px; /* Slightly larger padding for better touch targets */
+    font-size: 16px; /* Adjust font size for readability */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #620ae5;
+    color: white;
+    transition: background-color 0.3s ease;
+    width: 80%; /* Adjust width for consistency */
+}
+
+/* Hover effect for modal buttons */
+.modal-button:hover {
+    background-color: #9564de;
+}
+
+/* Styles for icons inside modal buttons */
+.modal-button svg {
+    margin-right: 8px;
+    font-size: 20px; /* Slightly larger icons for better visibility */
+    vertical-align: middle;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%; /* Increase width for small screens */
+    }
+
+    .modal-button {
+        font-size: 14px; /* Reduce font size for smaller screens */
+        padding: 10px 18px; /* Adjust padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 100%; /* Full width on very small screens */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .close-button {
+        font-size: 20px; /* Adjust close button size */
+        top: 5px; /* Adjust positioning for smaller screens */
+        right: 5px; /* Adjust positioning for smaller screens */
+    }
+
+    .modal-button {
+        font-size: 12px; /* Further reduce font size */
+        padding: 8px 16px; /* Adjust padding */
+    }
+
+    .modal-button svg {
+        font-size: 18px; /* Adjust icon size */
+    }
+}

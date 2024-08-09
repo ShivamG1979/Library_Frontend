@@ -1,35 +1,76 @@
 /* General container styles */
 .home-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the container covers the full viewport height */
+}
+
+/* Fixed navbar styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Navbar background color */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Space between left and right sections */
+    align-items: center;
+    z-index: 1000; /* Ensure navbar is on top of other content */
+}
+
+/* Styles for the navbar left section */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between logo and text */
+}
+
+/* Styles for the logo */
+.logo {
+    height: 30px; /* Adjust as needed */
+}
+
+/* Styles for the library text */
+.navbar-left h1 {
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Styles for the navbar right section */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+    padding-right: 40px;
+
+}
+
+/* Styles for buttons in the navbar */
+.navbar-right button {
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #620ae5;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for navbar buttons */
+.navbar-right button:hover {
+    background-color: #9564de;
+}
+
+/* Content styles */
+.content {
+    margin-top: 60px; /* Adjust top margin to avoid overlap with fixed navbar */
     text-align: center;
     padding: 20px;
-}
-
-/* Styles for the button container */
-.button-container {
-    margin-bottom: 20px;
-    display: flex; /* Use flexbox to arrange buttons horizontally */
-    justify-content: center; /* Center buttons horizontally */
-    gap: 10px; /* Space between buttons */
-}
-
-/* Styles for buttons */
-.button-container button {
-    margin: 15px 15px;
-    padding: 10px 20px; /* Reduce padding for smaller button size */
-    font-size: 14px; /* Reduce font size for a more compact look */
-    cursor: pointer;
-    border: none; /* Remove button borders */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #620ae5; /* Primary button color */
-    color: white; /* Button text color */
-    transition: background-color 0.3s ease; /* Smooth color transition */
-    max-width: 200px; /* Set maximum width for buttons */
-    width: 100%; /* Allow button to fill available width */
-}
-
-/* Hover effect for buttons */
-.button-container button:hover {
-    background-color: #9564de; /* Darken button on hover */
 }
 
 /* Styles for the book images container */
@@ -38,8 +79,8 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
     justify-items: center;
-    padding: 50px 20px; /* Add padding to the left and right for consistent gaps */
-    box-sizing: border-box; /* Ensure padding is included in the total width */
+    padding: 50px 20px;
+    box-sizing: border-box;
 }
 
 /* Styles for individual book image containers */
@@ -57,7 +98,7 @@
 
 /* Hover effect for book images */
 .book-image:hover {
-    transform: scale(1.5); /* Adjust scale for better UX */
+    transform: scale(1.5);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -74,33 +115,43 @@
     opacity: 0.9;
 }
 
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .book-images {
-        padding: 20px; /* Adjust padding on smaller screens */
+        padding: 20px;
     }
 
-    .button-container button {
-        font-size: 12px; /* Further reduce button text size */
-        padding: 6px 12px; /* Adjust button padding */
+    .navbar-right button {
+        font-size: 12px;
+        padding: 6px 12px;
     }
 }
 
 @media (max-width: 480px) {
     .book-images {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust columns on very small screens */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+
 /* Styles for icons inside buttons */
-.button-container button svg {
-    margin-right: 8px; /* Space between icon and text */
-    font-size: 18px; /* Larger icon size for emphasis */
-    vertical-align: middle; /* Align icon with text vertically */
-    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+.navbar-right button svg {
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: middle;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 /* Icon hover effect */
-.button-container button:hover svg {
-    transform: scale(1.5); /* Slightly increase size on hover */
-    color: #dc051b; /* Lighten icon color on hover */
+.navbar-right button:hover svg {
+    transform: scale(1.5);
+    color: #dc051b;
 }

@@ -231,37 +231,51 @@ const handleIssueBook = async (bookId) => {
                 </ul>
             </aside>
             <main className="admin-dashboard__main-content">
-                {selectedSection === 'viewAllBooks' && (
-                    <div>
-                        <h3>All Books</h3>
-                        <ul className="book-list">
-                            {books.length > 0 ? (
-                                books.map(book => (
-                                    <li key={book._id} className="book-list__item">
-                                        <div className="book-details">
-                                            <strong>Title:</strong> {book.title} <br />
-                                            <strong>Author:</strong> {book.author} <br />
-                                            <strong>Year:</strong> {book.year} <br />
-                                            <strong>Available:</strong> {book.available ? 'Yes' : 'No'} <br />
-                                            <img src={book.image} alt={book.title} style={{ width: '200px', height: '250px' }} />
-                                        </div>
-                                        <div className="book-actions">
-                                            <button onClick={() => {
-                                                setSelectedBook(book);
-                                                setBookForm({ title: book.title, author: book.author, year: book.year, image: book.image, available: book.available });
-                                                handleSectionChange('addOrEditBook');
-                                            }}>Edit</button>
-                                            <button onClick={() => handleDeleteBook(book._id)}>Delete</button>
-                                            <button onClick={() => handleIssueBook(book._id)} disabled={!book.available}>Issue</button>
-                                        </div>
-                                    </li>
-                                ))
-                            ) : (
-                                <p>No books found.</p>
-                            )}
-                        </ul>
-                    </div>
-                )}
+            {selectedSection === 'viewAllBooks' && (
+    <div>
+    <h3>All Books</h3>
+    <table className="admin-book-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {books.length > 0 ? (
+                books.map(book => (
+                    <tr key={book._id}>
+                        <td><img src={book.image} alt={book.title} /></td>
+                        <td>{book.title}</td>
+                        <td>{book.author}</td>
+                        <td>{book.year}</td>
+                        <td>{book.available ? 'Yes' : 'No'}</td>
+                        <td className="admin-book-actions">
+                            <button onClick={() => {
+                                setSelectedBook(book);
+                                setBookForm({ title: book.title, author: book.author, year: book.year, image: book.image, available: book.available });
+                                handleSectionChange('addOrEditBook');
+                            }}>Edit</button>
+                            <button onClick={() => handleDeleteBook(book._id)}>Delete</button>
+                            <button onClick={() => handleIssueBook(book._id)} disabled={!book.available}>Issue</button>
+                        </td>
+                    </tr>
+                ))
+            ) : (
+                <tr>
+                    <td colSpan="6">No books found.</td>
+                </tr>
+            )}
+        </tbody>
+    </table>
+</div>
+
+)}
+
 
                 {selectedSection === 'addOrEditBook' && (
                     <div className='addOrEditBook'>

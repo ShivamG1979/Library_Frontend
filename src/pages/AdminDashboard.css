@@ -46,37 +46,32 @@ h3 {
 }
 
 /* Add grid layout for books */
-.book-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 20px; /* Space between items */
+.admin-book-table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures that borders between cells are collapsed */
 }
 
-.book-list__item {
-    background-color: #eae3e3;
-    padding: 15px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
+.admin-book-table th, .admin-book-table td {
+    border: 1px solid #ddd; /* Adds border to cells */
+    padding: 8px; /* Adds padding inside cells */
+    text-align: center; /* Centers the text inside cells */
 }
 
-.book-details {
-    margin-bottom: 10px;
+.admin-book-table th {
+    background-color: #f4f4f4; /* Light background color for header cells */
+    font-weight: bold; /* Makes the header text bold */
 }
 
-.book-details img {
-    width: 150px;
-    height: 250px;
+.admin-book-table img {
+    width: 100px;
+    height: 150px;
     object-fit: cover;
 }
 
-.book-actions {
-    display: flex;
-    gap: 10px;
+.admin-book-actions button {
+    margin: 0 5px; /* Adds spacing between buttons */
 }
+
 
 button {
     width: 90%;

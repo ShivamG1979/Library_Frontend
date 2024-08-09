@@ -58,7 +58,7 @@ const UserLogin = () => {
                 <button type="submit" disabled={loading}>
                     {loading ? 'Logging in...' : 'Login'}
                 </button>
-                {loading && <div className="loading-spinner"></div>} {/* Loading spinner */}
+                {loading && <div className="loading-spinner"></div>} 
                 <div className="footer">
                     <p>If you don't have an account, <a href="/register">Register</a></p>
                     <button onClick={() => navigate('/')}>Home</button>
