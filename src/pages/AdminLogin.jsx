@@ -14,11 +14,11 @@ const AdminLogin = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/admin/login', { email, password });
+            const res = await axios.post('https://library-backend-ipoq.onrender.com/api/auth/admin/login', { email, password });
             localStorage.setItem('adminToken', res.data.token);
     
             const config = { headers: { 'x-auth-token': res.data.token } };
-            const profileRes = await axios.get('http://localhost:5000/api/auth/admin/profile', config);
+            const profileRes = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/admin/profile', config);
     
             const username = profileRes.data.user.username;
             toast.success(`Welcome, Admin ${username}!`);

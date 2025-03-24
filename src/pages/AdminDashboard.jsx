@@ -21,7 +21,7 @@ const AdminDashboard = () => {
             try {
                 const token = localStorage.getItem('adminToken');
                 const config = { headers: { 'x-auth-token': token } };
-                const { data } = await axios.get('http://localhost:5000/api/auth/admin/profile', config);
+                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/admin/profile', config);
     
                 // Debugging
                 console.log('Fetched Admin Data:', data.user);
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
                 const config = { headers: { 'x-auth-token': token } };
 
                 if (selectedSection === 'viewAllBooks') {
-                    const { data } = await axios.get('http://localhost:5000/api/auth/admin/books', config);
+                    const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/admin/books', config);
                     setBooks(data);
                 } else {
                     const [booksRes, usersRes] = await Promise.all([
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
         try {
             const token = localStorage.getItem('adminToken');
             const config = { headers: { 'x-auth-token': token } };
-            await axios.delete(`http://localhost:5000/api/auth/admin/books/${bookId}`, config);
+            await axios.delete(`https://library-backend-ipoq.onrender.com/api/auth/admin/books/${bookId}`, config);
             setBooks(books.filter(book => book._id !== bookId));
             toast.success('Book deleted successfully');
         } catch (error) {
@@ -110,7 +110,7 @@ const handleIssueBook = async (bookId) => {
         }
 
         const response = await axios.put(
-            `http://localhost:5000/api/books/issue/${bookId}`,
+            `https://library-backend-ipoq.onrender.com/api/books/issue/${bookId}`,
             { userId },
             config
         );
@@ -139,12 +139,12 @@ const handleIssueBook = async (bookId) => {
     
             if (selectedBook) {
                 // Edit existing book
-                await axios.put(`http://localhost:5000/api/auth/admin/books/${selectedBook._id}`, { ...bookForm }, config);
+                await axios.put(`https://library-backend-ipoq.onrender.com/api/auth/admin/books/${selectedBook._id}`, { ...bookForm }, config);
                 setBooks(books.map(book => book._id === selectedBook._id ? { ...bookForm, _id: selectedBook._id } : book));
                 toast.success('Book updated successfully');
             } else {
                 // Add new book
-                const { data } = await axios.post('http://localhost:5000/api/auth/admin/books', { ...bookForm, user: admin._id }, config);
+                const { data } = await axios.post('https://library-backend-ipoq.onrender.com/api/auth/admin/books', { ...bookForm, user: admin._id }, config);
                 setBooks([...books, data]);
                 toast.success('Book added successfully');
             }
@@ -163,7 +163,7 @@ const handleIssueBook = async (bookId) => {
         try {
             const token = localStorage.getItem('adminToken');
             const config = { headers: { 'x-auth-token': token } };
-            await axios.delete(`http://localhost:5000/api/auth/admin/users/${userId}`, config);
+            await axios.delete(`https://library-backend-ipoq.onrender.com/api/auth/admin/users/${userId}`, config);
             setUsers(users.filter(user => user._id !== userId));
             toast.success('User deleted successfully');
         } catch (error) {
@@ -179,12 +179,12 @@ const handleIssueBook = async (bookId) => {
 
             if (editingUser) {
                 // Update existing user
-                await axios.put(`http://localhost:5000/api/auth/admin/users/${editingUser._id}`, userForm, config);
+                await axios.put(`https://library-backend-ipoq.onrender.com/api/auth/admin/users/${editingUser._id}`, userForm, config);
                 setUsers(users.map(user => user._id === editingUser._id ? { ...userForm, _id: editingUser._id } : user));
                 toast.success('User updated successfully');
             } else {
                 // Add new user
-                const { data } = await axios.post('http://localhost:5000/api/auth/admin/users', userForm, config);
+                const { data } = await axios.post('https://library-backend-ipoq.onrender.com/api/auth/admin/users', userForm, config);
                 setUsers([...users, data]);
                 toast.success('User added successfully');
             }

@@ -18,7 +18,7 @@ const AdminProfile = () => {
             try {
                 const token = localStorage.getItem('adminToken');
                 const config = { headers: { 'x-auth-token': token } };
-                const { data } = await axios.get('http://localhost:5000/api/auth/admin/profile', config);
+                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/admin/profile', config);
                 setAdmin(data.user);
                 setUsername(data.user.username);
                 setEmail(data.user.email);
@@ -39,7 +39,7 @@ const AdminProfile = () => {
             const config = { headers: { 'x-auth-token': token } };
     
             const updatedProfile = { username, email, password, newPassword };
-            const response = await axios.put('http://localhost:5000/api/auth/admin/profile', updatedProfile, config);
+            const response = await axios.put('https://library-backend-ipoq.onrender.com/api/auth/admin/profile', updatedProfile, config);
             console.log('Profile updated:', response.data);
             toast.success('Profile updated successfully');
             navigate('/admin/dashboard');

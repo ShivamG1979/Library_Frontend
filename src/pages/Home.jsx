@@ -14,7 +14,7 @@ const Home = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/books');
+                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/books');
                 // Select random books
                 const shuffled = data.sort(() => 0.5 - Math.random()); 
                 const selected = shuffled.slice(0, 6);

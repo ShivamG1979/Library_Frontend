@@ -26,7 +26,7 @@ const UserDashboard = () => {
             try {
                 const token = localStorage.getItem('token');
                 const config = { headers: { 'x-auth-token': token } };
-                const { data } = await axios.get('http://localhost:5000/api/books', config);
+                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/books', config);
 
                 const issued = data.filter(book => !book.available);
                 const available = data.filter(book => book.available);
@@ -43,7 +43,7 @@ const UserDashboard = () => {
             try {
                 const token = localStorage.getItem('token');
                 const config = { headers: { 'x-auth-token': token } };
-                const response = await axios.get('http://localhost:5000/api/auth/profile', config);
+                const response = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/profile', config);
         
                 setUserProfile(response.data.user);
             } catch (error) {
@@ -69,7 +69,7 @@ const UserDashboard = () => {
         try {
             const token = localStorage.getItem('token');
             const config = { headers: { 'x-auth-token': token } };
-            const { data } = await axios.post('http://localhost:5000/api/books', newBook, config);
+            const { data } = await axios.post('https://library-backend-ipoq.onrender.com/api/books', newBook, config);
 
             setCart(prevCart => [...prevCart, data._id]);
             setBooks(prevBooks => [...prevBooks, data]);
@@ -105,7 +105,7 @@ const UserDashboard = () => {
             const token = localStorage.getItem('token');
             const config = { headers: { 'x-auth-token': token } };
             await Promise.all(selectedBooks.map(bookId =>
-                axios.put(`http://localhost:5000/api/books/issue/${bookId}`, {}, config)
+                axios.put(`https://library-backend-ipoq.onrender.com/api/books/issue/${bookId}`, {}, config)
             ));
 
             setIssuedBooks(prevIssuedBooks => [
@@ -140,7 +140,7 @@ const UserDashboard = () => {
             const token = localStorage.getItem('token');
             const config = { headers: { 'x-auth-token': token } };
             await Promise.all(selectedBooks.map(bookId =>
-                axios.delete(`http://localhost:5000/api/books/${bookId}`, config)
+                axios.delete(`https://library-backend-ipoq.onrender.com/api/books/${bookId}`, config)
             ));
     
             setBooks(prevBooks => prevBooks.filter(book => !selectedBooks.includes(book._id)));

@@ -15,12 +15,12 @@ const UserLogin = () => {
         setLoading(true); // Set loading to true when request starts
         try {
             // Login request
-            const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+            const res = await axios.post('https://library-backend-ipoq.onrender.com/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
 
             // Fetch user profile to get the username
             const config = { headers: { 'x-auth-token': res.data.token } };
-            const profileRes = await axios.get('http://localhost:5000/api/auth/profile', config);
+            const profileRes = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/profile', config);
 
             // Extract username from profile response
             const username = profileRes.data.user.username;

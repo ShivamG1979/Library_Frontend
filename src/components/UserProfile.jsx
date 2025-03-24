@@ -18,7 +18,7 @@ const UserProfile = () => {
             try {
                 const token = localStorage.getItem('token');
                 const config = { headers: { 'x-auth-token': token } };
-                const { data } = await axios.get('http://localhost:5000/api/auth/profile', config);
+                const { data } = await axios.get('https://library-backend-ipoq.onrender.com/api/auth/profile', config);
 
                 if (data && data.user) {
                     setUserProfile(data.user);
